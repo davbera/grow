@@ -1,0 +1,128 @@
+html, body {
+	padding:0;
+	margin:0;
+	width: 100%;
+	height: 100%;
+}
+
+#widget {
+	background-color: #f5f5f0;
+	width: 1500px;
+	height: 725px;
+	position:center;
+}
+
+#menu {
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-color: #e1e1d0;
+	float: left;
+	width: 40px;
+	height: 725px;
+}
+
+#menu div { padding: 2% 2% 2% 2%; }
+
+#menu img{
+	background-color: #f5f5f5;
+	border-radius: 6px;
+	cursor: pointer;
+	display: block;
+
+	width: 30px;
+	height: 30px;
+	max-width : 30px;
+	max-height : 30px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#content {
+	float: left;
+	width: 1455px;
+	height: 725px;
+}
+
+#screen {
+	background-color: #FFFFFF;
+	width: 1455px;
+	height: 575px;
+}
+
+.slider {
+	margin-top: 2px;
+	margin-bottom: 2px;
+    width: 1455px;
+    height: 3px;
+    background-color: #f5f5f5;
+	cursor: row-resize;
+	position:absolute;
+}
+
+
+#logger {
+	margin-top: 5px;
+	padding-left:2px;
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #adad85;
+	border-width:thin;
+	width: 1455px;
+	height: 145px;
+	max-height: 500px;
+	overflow: auto;
+
+	position:absolute;
+}
+
+
+.inputfile {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+}
+
+.lineTopBorder { border-top: 2px solid #e1e1d0; }
+
+.disable {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+	filter: gray;
+	opacity:0.5;
+}
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+#informationPanel { position:absolute; top:0px; }
+/*
+#simulationContent {
+	width: 1455px;
+	height: 575px;
+}
+*/
+
+@media all and (max-width: 1400px) and (min-width: 1200px) {
+	#widget {
+		width: 1200px;
+	}
+	#content {
+		width: 1150px;
+	}
+	#screen {
+		width: 1150px;
+	}
+	/*#simulationContent {
+		width: 1150px;
+	}*/
+	.slider {
+		width: 1150px;
+	}
+	#logger {
+		width: 1145px;
+	}
+}

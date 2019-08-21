@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/gl-matrix-min.js"></script>
+	<script type="text/javascript" src="js/render.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<script type="text/javascript" src="js/socket.io-1.7.3.js"></script>
+	<script type="text/javascript" src="js/socketClient.js"></script>
+
+	<script id="shader-fs" type="x-shader/x-fragment">
+		#ifdef GL_ES
+		precision highp float;
+		#endif
+
+		varying vec4 vColor;
+			
+		void main(void) {
+			gl_FragColor = vColor;
+		//	gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+		}
+	</script>
+
+	<script id="shader-vs" type="x-shader/x-vertex">
+		attribute vec2 aVertexPosition;
+		attribute vec4 aVertexColor;
+
+		uniform mat4 uMVMatrix;
+		uniform mat4 uPMatrix;
+
+		varying vec4 vColor;
+		void main(void) {
+			gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 0.0, 1.0);
+			vColor = aVertexColor;
+		}
+	</script>
+  </head>
+  <body>
+		<div id="widget">
+			<div id="menu">
+				<div>
+					<form enctype="multipart/form-data" method="post" name="fileinfo">
+						<label for="file"><img id="imgLoad" src="icons/open.png" alt="Load a .gro file" title="Open a .gro file" /></label>
+						<input id="file" class="inputfile" type="file" name="file"  alt="Load a .gro file" title="Open a .gro file" onchange="loadFile();"/>
+					</form>
+					<img class="disable" src="icons/reload.png" alt="Reload current .gro file" title="Reload current .gro file" />
+				</div>
+				<div class="lineTopBorder">
+					<img id="start" class="disable" src="icons/start.png" alt="start" title="Start or stop gro" />
+					<img id="stop" class="hidden disable" src="icons/stop.png" alt="stop" title="Pause simulation" />
+					<img id="step" class="disable" src="icons/step.png" alt="step" title="Simulate for one timestep" />
+				</div>
+				<div class="lineTopBorder">
+					<img id="zoomIn" class="disable" src="icons/zoom_in.png" alt="zoom_in" title="Zoom In" />
+					<img id="zoomOut" class="disable" src="icons/zoom_out.png" alt="zoom_out" title="Zoom Out" />
+				</div>
+				<div class="lineTopBorder">
+					<img id="moveUp" class="disable" src="icons/arrow-up.png" alt="move_up" title="Move Up" />
+					<img id="moveDown" class="disable" src="icons/arrow-down.png" alt="move_down" title="Move Down" />
+					<img id="moveRight" class="disable" src="icons/arrow-right.png" alt="move_right" title="Move Right"  />
+					<img id="moveLeft" class="disable" src="icons/arrow-left.png" alt="move_left" title="Move Left"  />
+				</div>
+				<div class="lineTopBorder">
+					<img id="resetPosition" class="disable" src="icons/center.png" alt="reset_position" title="Reset Position" />
+					<img id="targetSel" class="disable" src="icons/target.png" alt="center_selection" title="Center Selection" />
+				</div>
+			</div>
+
+			<div id="content">
+				<div id="screen">
+					<div id="canvas">
+						<canvas id="simulationContent"	width="1455px" height="575px"></canvas>
+            <div id="informationPanel">
+            </div>
+					</div>
+
+				</div>
+
+				<div class="slider"></div>
+				<div id="logger">
+					<h3>gro: The Cell Programming Language</h3>
+					<p>
+						Version beta.5<br>
+						Programmed by Eric Klavins, University of Washington, Seattle, WA, USA<br>
+						Copyright 2011-2012, University of Washington (GNU V.2)<br>
+						See <a href="http://depts.washington.edu/soslab/gro" target="blank" >http://depts.washington.edu/soslab/gro</a> for more information.<br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+  </body>
+</html>
